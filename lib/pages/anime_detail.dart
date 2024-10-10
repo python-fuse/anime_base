@@ -7,6 +7,7 @@ import 'package:anime_base/widgets/my_button.dart';
 import 'package:flutter/material.dart';
 import 'package:text_marquee/text_marquee.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:anime_base/data/database_helpers.dart';
 
 class AnimeDetail extends StatefulWidget {
   final dynamic anime;
@@ -18,6 +19,7 @@ class AnimeDetail extends StatefulWidget {
 
 class _AnimeDetailState extends State<AnimeDetail> {
   Future<List<AnimeRecommendation>>? recommendedAnime;
+  bool _isSaved = false;
 
   String getAiredYear(String date) {
     List<String> airedDate = date.split(',');
@@ -38,6 +40,25 @@ class _AnimeDetailState extends State<AnimeDetail> {
   void initState() {
     super.initState();
     recommendedAnime = fetchAnimeRecommendation(widget.anime.id);
+    _checkIfSaved();
+  }
+
+  Future<void> _checkIfSaved() async {
+    final saved = await DatabaseHelper.instance.isAnimeSaved(widget.anime.id);
+    setState(() {
+      _isSaved = saved;
+    });
+  }
+
+  Future<void> _toggleSave() async {
+    if (_isSaved) {
+      await DatabaseHelper.instance.deleteAnime(widget.anime.id);
+    } else {
+      await DatabaseHelper.instance.saveAnime(widget.anime);
+    }
+    setState(() {
+      _isSaved = !_isSaved;
+    });
   }
 
   @override
@@ -63,7 +84,7 @@ class _AnimeDetailState extends State<AnimeDetail> {
                       Row(
                         children: [
                           SizedBox(
-                            width: getDeviceWidth(context) * 0.69,
+                            width: getDeviceWidth(context) * 0.68,
                             child: TextMarquee(
                               widget.anime.title,
                               style: const TextStyle(
@@ -73,8 +94,13 @@ class _AnimeDetailState extends State<AnimeDetail> {
                           Row(
                             children: [
                               IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.bookmark_add_outlined),
+                                onPressed: _toggleSave,
+                                icon: Icon(
+                                  _isSaved
+                                      ? Icons.bookmark
+                                      : Icons.bookmark_outline,
+                                  color: _isSaved ? Colors.deepOrange : null,
+                                ),
                               ),
                               IconButton(
                                 onPressed: () {},

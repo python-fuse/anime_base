@@ -30,7 +30,7 @@ class AnimeCard extends StatelessWidget {
                 spreadRadius: 1,
               )
             ]),
-        margin: const EdgeInsets.only(top: 5, right: 5),
+        margin: const EdgeInsets.only(top: 5, right: 7),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: Image.network(

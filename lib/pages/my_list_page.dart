@@ -5,6 +5,11 @@ class MyListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("My List"),
+        centerTitle: true,
+      ),
+    );
   }
 }

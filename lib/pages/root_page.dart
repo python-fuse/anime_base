@@ -1,6 +1,6 @@
-import 'package:anime_base/pages/categories_page.dart';
 import 'package:anime_base/pages/home_page.dart';
 import 'package:anime_base/pages/my_list_page.dart';
+import 'package:anime_base/pages/search_page.dart';
 import 'package:flutter/material.dart';
 
 class RootPage extends StatefulWidget {
@@ -15,7 +15,8 @@ class _RootPageState extends State<RootPage> {
 
   final List<Widget> _pages = const <Widget>[
     HomePage(),
-    CategoriesPage(),
+    // CategoriesPage(),
+    SearchPage(),
     MyListPage(),
   ];
 
@@ -39,8 +40,8 @@ class _RootPageState extends State<RootPage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            label: 'Categories',
+            icon: Icon(Icons.search),
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list),

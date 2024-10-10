@@ -24,7 +24,6 @@ class _TopAnimeCardState extends State<TopAnimeCard> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     anime = pickRandomAnime(widget.animeList);
   }

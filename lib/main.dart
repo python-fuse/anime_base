@@ -1,4 +1,5 @@
 import 'package:anime_base/pages/root_page.dart';
+import 'package:anime_base/pages/search_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,10 +16,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Anime Base',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: const ColorScheme.dark(),
         useMaterial3: true,
       ),
       home: const RootPage(),
+      routes: {
+        '/home': (ctx) => const RootPage(),
+        '/search': (ctx) => const SearchPage(),
+      },
     );
   }
 }

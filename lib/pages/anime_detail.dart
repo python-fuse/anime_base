@@ -9,7 +9,7 @@ import 'package:text_marquee/text_marquee.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AnimeDetail extends StatefulWidget {
-  final Anime anime;
+  final dynamic anime;
   const AnimeDetail({super.key, required this.anime});
 
   @override
@@ -36,7 +36,6 @@ class _AnimeDetailState extends State<AnimeDetail> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     recommendedAnime = fetchAnimeRecommendation(widget.anime.id);
   }

@@ -1,4 +1,6 @@
+import 'package:anime_base/models/anime_model.dart';
 import 'package:anime_base/widgets/anime_card.dart';
+import 'package:anime_base/widgets/related_card.dart';
 import 'package:flutter/material.dart';
 
 class AnimeRow extends StatelessWidget {
@@ -19,14 +21,20 @@ class AnimeRow extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: snapshot.data!.length,
                 itemBuilder: (ctx, index) {
-                  return AnimeCard(
-                    anime: snapshot.data![index],
-                  );
+                  return snapshot.data.runtimeType == (List<Anime>)
+                      ? AnimeCard(
+                          anime: snapshot.data![index],
+                        )
+                      : RelatedCard(
+                          anime: snapshot.data![index],
+                        );
                 },
               ),
             );
           } else {
-            return const Dialog(
+            return const SizedBox(
+              width: double.infinity,
+              height: 100,
               child: Text('Error fetching data'),
             );
           }

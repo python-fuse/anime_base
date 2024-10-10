@@ -10,7 +10,7 @@ class CategoriesPage extends StatefulWidget {
 class _CategoriesPageState extends State<CategoriesPage> {
   bool _revealMessage = false;
   double _containerWidth = 100;
-  Color _shoppingBagColor = Colors.blue;
+  final Color _shoppingBagColor = Colors.blue;
 
   @override
   Widget build(BuildContext context) {
